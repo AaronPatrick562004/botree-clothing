@@ -1,0 +1,91 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Dark Navy - Background */
+  --background: #0A1F3D;
+  --foreground: #FFFFFF;
+  
+  /* Navy Blue - Cards */
+  --card: #1B3B6F;
+  --card-foreground: #FFFFFF;
+  
+  /* Gold - Primary */
+  --primary: #D4AF37;
+  --primary-foreground: #0A1F3D;
+  
+  /* Navy Blue - Secondary */
+  --secondary: #1B3B6F;
+  --secondary-foreground: #D4AF37;
+  
+  /* Light Navy - Muted */
+  --muted: #2A4A7A;
+  --muted-foreground: #CCCCCC;
+  
+  /* Red - Destructive */
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  
+  /* Light Navy - Border */
+  --border: #2A4A7A;
+  
+  /* Gold - Ring */
+  --ring: #D4AF37;
+  
+  /* Border radius */
+  --radius: 0.625rem;
+}
+
+/* Dark mode */
+.dark {
+  --background: #0A1F3D;
+  --foreground: #FFFFFF;
+  --card: #1B3B6F;
+  --card-foreground: #FFFFFF;
+  --primary: #D4AF37;
+  --primary-foreground: #0A1F3D;
+  --secondary: #1B3B6F;
+  --secondary-foreground: #D4AF37;
+  --muted: #2A4A7A;
+  --muted-foreground: #CCCCCC;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #2A4A7A;
+  --ring: #D4AF37;
+}
+
+@theme {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+}
