@@ -23,6 +23,7 @@ interface CartContextType {
   totalItems: number;
   subtotal: number;
   totalSavings: number;
+  totalPrice: number; // ← ADDED
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -66,8 +67,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   const removeItem = (id: string, size: string) => {
-    setItems(currentItems => 
-      currentItems.filter(item => !(item.id === id && item.size === size))
+    setItems(currentItems =>
+      currentItems.filter(item =>!(item.id === id && item.size === size))
     );
   };
 
@@ -76,7 +77,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setItems(currentItems =>
       currentItems.map(item =>
         item.id === id && item.size === size
-          ? { ...item, quantity }
+         ? {...item, quantity }
           : item
       )
     );
@@ -106,6 +107,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         totalItems,
         subtotal,
         totalSavings,
+        totalPrice: subtotal, // ← ADDED: alias subtotal as totalPrice
       }}
     >
       {children}
