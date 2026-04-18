@@ -63,16 +63,16 @@ export function CartClient() {
         <div className="lg:col-span-2 flex flex-col gap-4">
           {items.map((item) => (
             <div
-              key={`${item.product.id}-${item.size}-${item.color}`}
+              key={`${item.id}-${item.size}`}
               className="flex gap-4 bg-card rounded-xl p-4 border border-border"
             >
               <Link
-                href={`/product/${item.product.id}`}
+                href={`/product/${item.id}`}
                 className="relative h-28 w-24 flex-shrink-0 rounded-lg overflow-hidden bg-secondary"
               >
                 <Image
-                  src={item.product.image}
-                  alt={item.product.name}
+                  src={item.image}
+                  alt={item.name}
                   fill
                   className="object-cover"
                   sizes="96px"
@@ -80,25 +80,20 @@ export function CartClient() {
               </Link>
               <div className="flex-1 flex flex-col justify-between min-w-0">
                 <div>
-                  <Link href={`/product/${item.product.id}`}>
+                  <Link href={`/product/${item.id}`}>
                     <h3 className="text-sm font-semibold text-foreground hover:text-primary transition-colors truncate">
-                      {item.product.name}
+                      {item.name}
                     </h3>
                   </Link>
                   <p className="text-xs text-muted-foreground mt-0.5">
-                    {item.color} / {item.size}
+                    {item.category} / {item.size}
                   </p>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center border border-border rounded-lg">
                     <button
                       onClick={() =>
-                        updateQuantity(
-                          item.product.id,
-                          item.size,
-                          item.color,
-                          item.quantity - 1
-                        )
+                        updateQuantity(item.id, item.size, item.quantity - 1)
                       }
                       className="p-2 hover:bg-secondary transition-colors"
                       aria-label="Decrease quantity"
@@ -108,12 +103,7 @@ export function CartClient() {
                     <span className="px-3 text-xs font-semibold">{item.quantity}</span>
                     <button
                       onClick={() =>
-                        updateQuantity(
-                          item.product.id,
-                          item.size,
-                          item.color,
-                          item.quantity + 1
-                        )
+                        updateQuantity(item.id, item.size, item.quantity + 1)
                       }
                       className="p-2 hover:bg-secondary transition-colors"
                       aria-label="Increase quantity"
@@ -123,11 +113,11 @@ export function CartClient() {
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="text-sm font-semibold text-foreground">
-                      {formatPrice(item.product.price * item.quantity)}
+                      {formatPrice(item.price * item.quantity)}
                     </span>
                     <button
                       onClick={() => {
-                        removeItem(item.product.id, item.size, item.color);
+                        removeItem(item.id, item.size);
                         toast.success("Item removed from cart");
                       }}
                       className="p-1.5 text-muted-foreground hover:text-destructive transition-colors"
