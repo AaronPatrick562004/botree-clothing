@@ -9,19 +9,19 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 // Enhanced Button component with animations
 const Button = ({ children, variant = "default", size = "default", className = "", href, ...props }: any) => {
   const baseClasses = "inline-flex items-center justify-center font-medium transition-all duration-300 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden group";
-  
+
   const variants = {
     default: "bg-white text-black hover:bg-gray-100 shadow-lg hover:shadow-xl",
     outline: "border-2 border-white text-white hover:bg-white/20 backdrop-blur-sm",
   };
-  
+
   const sizes = {
     default: "h-10 px-4 py-2",
     lg: "h-12 px-8",
   };
-  
+
   const Component = href ? Link : 'button';
-  
+
   return (
     <Component
       href={href}
@@ -44,51 +44,49 @@ const Button = ({ children, variant = "default", size = "default", className = "
 const heroSlides = [
   {
     id: 1,
-    src: "/images/hero/hero-1.jpg",
+    src: "https://images.unsplash.com/photo-1643970815116-0d0341f91f34?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     alt: "Botree Clothing Collection 1",
     title: "Redefine Your Style",
     subtitle: "Spring / Summer 2026",
     description: "Curated collections designed for the modern wardrobe. Where quality craftsmanship meets contemporary elegance.",
     cta1: "Shop New Arrivals",
-    cta2: "Explore Collections",
+    cta2: "Explore Mens Collections",
     link1: "/category/new-arrivals",
-    link2: "/category/women",
+    link2: "/category/men",
   },
   {
     id: 2,
-    src: "/images/hero/hero-2.jpg",
+    src: "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     alt: "Botree Clothing Collection 2",
     title: "Ethnic Elegance",
     subtitle: "Traditional Collection",
     description: "Discover our exquisite range of traditional wear with a contemporary twist, perfect for every occasion.",
-    cta1: "Shop Ethnic Wear",
-    cta2: "View Collection",
-    link1: "/category/ethnic",
-    link2: "/category/festive",
+    cta1: "Shop New Arrivals",
+    cta2: "Explore Womens Collections",
+    link1: "/category/new-arrivals",
+    link2: "/category/women",
   },
   {
     id: 3,
-    src: "/images/hero/hero-3.jpg",
+    src: "https://images.unsplash.com/photo-1758782213532-bbb5fd89885e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     alt: "Botree Clothing Collection 3",
     title: "Urban Chic",
     subtitle: "Street Style Essentials",
     description: "Embrace the urban vibe with our latest streetwear collection, designed for the trendsetters.",
-    cta1: "Shop Streetwear",
-    cta2: "Explore Now",
-    link1: "/category/streetwear",
-    link2: "/category/new-arrivals",
+    cta1: "Shop New Arrivals",
+    cta2: "Explore Kids Collections",
+    link1: "/category/new-arrivals",
+    link2: "/category/kids",
   },
   {
     id: 4,
-    src: "/images/hero/hero-4.jpg",
+    src: "https://media.istockphoto.com/id/1264054965/photo/new-arrivals-notice-in-shop-window.jpg?s=2048x2048&w=is&k=20&c=FD_553pLz0BVwPVWxKw7lLBmS1TIErK48GJMdusoNUU=",
     alt: "Botree Clothing Collection 4",
     title: "Luxury Comfort",
     subtitle: "Premium Collection",
     description: "Experience unparalleled comfort with our premium fabric collection, where luxury meets everyday wear.",
-    cta1: "Shop Premium",
-    cta2: "View Details",
-    link1: "/category/premium",
-    link2: "/category/men",
+    cta1: "Shop New Arrivals",
+    link1: "/category/new-arrivals",
   }
 ];
 
@@ -149,7 +147,7 @@ export function HeroSection() {
   // Auto-play carousel
   useEffect(() => {
     if (!isAutoPlaying) return;
-    
+
     const timer = setInterval(nextSlide, 6000);
     return () => clearInterval(timer);
   }, [isAutoPlaying, currentIndex]);
@@ -162,7 +160,7 @@ export function HeroSection() {
   };
 
   return (
-    <section 
+    <section
       className="relative min-h-[90vh] flex items-center overflow-hidden bg-black"
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
@@ -197,7 +195,7 @@ export function HeroSection() {
           </div>
         </motion.div>
       </AnimatePresence>
-      
+
       {/* Navigation Arrows with animations */}
       <motion.button
         onClick={() => {
@@ -211,7 +209,7 @@ export function HeroSection() {
       >
         <ChevronLeft className="h-6 w-6" />
       </motion.button>
-      
+
       <motion.button
         onClick={() => {
           handleUserInteraction();
@@ -282,15 +280,17 @@ export function HeroSection() {
                 </motion.span>
               </Button>
             </Link>
-            <Link href={heroSlides[currentIndex].link2}>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white/20 rounded-full px-8 text-sm uppercase tracking-wider font-semibold shadow-lg backdrop-blur-sm"
-              >
-                {heroSlides[currentIndex].cta2}
-              </Button>
-            </Link>
+            {heroSlides[currentIndex].link2 && heroSlides[currentIndex].cta2 && (
+              <Link href={heroSlides[currentIndex].link2}>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-white text-white hover:bg-white/20 rounded-full px-8 text-sm uppercase tracking-wider font-semibold shadow-lg backdrop-blur-sm"
+                >
+                  {heroSlides[currentIndex].cta2}
+                </Button>
+              </Link>
+            )}
           </motion.div>
         </div>
       </div>
@@ -310,11 +310,10 @@ export function HeroSection() {
             aria-label={`Go to slide ${index + 1}`}
           >
             <div
-              className={`transition-all duration-300 ${
-                index === currentIndex 
-                  ? "w-10 h-2.5 bg-white shadow-lg" 
-                  : "w-2.5 h-2.5 bg-white/40 group-hover:bg-white/70"
-              } rounded-full`}
+              className={`transition-all duration-300 ${index === currentIndex
+                ? "w-10 h-2.5 bg-white shadow-lg"
+                : "w-2.5 h-2.5 bg-white/40 group-hover:bg-white/70"
+                } rounded-full`}
             />
             {index === currentIndex && (
               <motion.div
@@ -344,3 +343,4 @@ export function HeroSection() {
     </section>
   );
 }
+
