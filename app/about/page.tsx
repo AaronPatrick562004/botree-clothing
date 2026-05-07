@@ -38,7 +38,7 @@ export default function AboutPage() {
           </div>
         </div>
         <div className="relative h-100 rounded-lg overflow-hidden">          <Image
-          src="/images/about/story.jpg"
+          src="/images/about/Botree.jpg"
           alt="Botree Studio"
           fill
           className="object-cover"
