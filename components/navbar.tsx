@@ -153,9 +153,10 @@ export function Navbar() {
           <Popover>
             <PopoverTrigger asChild>
               <Button 
+                variant="ghost"
                 size="icon" 
                 aria-label="Search" 
-                className="h-11 w-11 rounded-full bg-[#1e2a4a] hover:bg-[#2a3a5a] text-white data-[state=open]:bg-[#1e2a4a]"
+                className="h-11 w-11"
               >
                 <Search className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
